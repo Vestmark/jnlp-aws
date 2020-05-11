@@ -39,7 +39,7 @@ RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git \
 	&& rm -r aws-elastic-beanstalk-cli-setup
 
 RUN echo '#!/bin/bash\n\
-cat << \EOF >> ~/.bash_profile\n\
+cat << \EOF >> ~/.bashrc\n\
 export PATH="/home/jenkins/.ebcli-virtual-env/executables:$PATH"\n\
 EOF\n'\
 > ~/updatePath.sh
