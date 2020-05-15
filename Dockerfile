@@ -38,11 +38,4 @@ RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git \
 	&& ./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer \
 	&& rm -r aws-elastic-beanstalk-cli-setup
 
-RUN echo '#!/bin/bash\n\
-cat << \EOF >> ~/.bashrc\n\
-export PATH="/home/jenkins/.ebcli-virtual-env/executables:$PATH"\n\
-EOF\n'\
-> ~/updatePath.sh
-RUN chmod a+x updatePath.sh
-RUN ./updatePath.sh
-RUN rm ./updatePath.sh
+ENV PATH="/home/jenkins/.ebcli-virtual-env/executables:${PATH}"
