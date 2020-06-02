@@ -13,7 +13,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ${AWSCLI_
 	&& rm ${AWSCLI_ZIP}
 
 # Install Terraform
-ENV TERRAFORM_VERSION 0.12.24
+ENV TERRAFORM_VERSION 0.12.26
 ENV TERRAFORM_URL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 ENV TERRAFORM_CHECKSUM "602d2529aafdaa0f605c06adb7c72cfb585d8aa19b3f4d8d189b42589e27bf11"
 
