@@ -1,2 +1,2 @@
 # jnlp-aws
-A Jenkins slave using JNLP to establish connection to Jenkins, AWS CLI, Terraform, and Terragrunt.
+A Jenkins slave based on jenkins/inbound-agent adding AWS CLI, Terraform, Terragrunt, and EB CLI.
