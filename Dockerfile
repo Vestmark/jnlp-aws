@@ -13,9 +13,9 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ${AWSCLI_
   && rm ${AWSCLI_ZIP}
 
 # Install Terraform
-ENV TERRAFORM_VERSION 0.12.26
+ENV TERRAFORM_VERSION 0.12.28
 ENV TERRAFORM_URL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
-ENV TERRAFORM_CHECKSUM "607bc802b1c6c2a5e62cc48640f38aaa64bef1501b46f0ae4829feb51594b257"
+ENV TERRAFORM_CHECKSUM "be99da1439a60942b8d23f63eba1ea05ff42160744116e84f46fc24f1a8011b6"
 
 RUN curl -SL "${TERRAFORM_URL}" --output terraform.zip \
   && echo "${TERRAFORM_CHECKSUM} terraform.zip" | sha256sum -c - \
