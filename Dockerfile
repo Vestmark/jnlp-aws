@@ -14,12 +14,11 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ${AWSCLI_
 
 # Install TF Switch 
 RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
-RUN tfswitch 0.13.6
-RUN tfswitch 0.12.30
+RUN tfswitch 0.13.7
 
 # Install TG Switch
 RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
-RUN tgswitch 0.23.40
+RUN tgswitch 0.25.5
 
 # Terraform Quality Analysis Tools
 RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
@@ -29,7 +28,7 @@ USER jenkins
 
 RUN mkdir /home/jenkins/bin && \
   cd /home/jenkins/bin && \
-  curl -LJO https://github.com/tfsec/tfsec/releases/download/v0.37.1/tfsec-linux-amd64 -o tfsec
+  curl -LJO https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
