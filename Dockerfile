@@ -28,7 +28,7 @@ USER jenkins
 
 RUN mkdir /home/jenkins/bin && \
   cd /home/jenkins/bin && \
-  curl -LJO https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec
+  curl -LJ https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
