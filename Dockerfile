@@ -30,6 +30,12 @@ RUN mkdir /home/jenkins/bin && \
   cd /home/jenkins/bin && \
   curl -LJ https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec && \
   chmod 755 tfsec
+
+RUN curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_arm64.tar.gz")" > terrascan.tar.gz && \
+  tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz && \
+  install terrascan /home/jenkins/bin && rm terrascan && \
+  chmod 755 /home/jenkins/bin/terrascan
+  
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
