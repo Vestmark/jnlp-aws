@@ -36,6 +36,8 @@ RUN curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/
   install terrascan /home/jenkins/bin && rm terrascan && \
   chmod 755 /home/jenkins/bin/terrascan
   
+RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+  
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
