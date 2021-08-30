@@ -12,21 +12,22 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ${AWSCLI_
   && ./aws/install \
   && rm ${AWSCLI_ZIP}
   
+# Install TF Switch 
+RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
+
+# Install TG Switch
+RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
+  
 # Terraform Quality Analysis Tools
 RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 RUN pip3 install checkov
 
 USER jenkins
 
+# Set base TF & TG Versions
 RUN mkdir /home/jenkins/bin
-
-# Install TF Switch 
-RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
-RUN tfswitch -b /home/jenkins/bin 0.13.7
-
-# Install TG Switch
-RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
-RUN tgswitch -b /home/jenkins/bin 0.25.5
+RUN tfswitch -b /home/jenkins/bin --latest-stable 1.0
+RUN tgswitch -b /home/jenkins/bin 0.31.7
 
 RUN cd /home/jenkins/bin && \
   curl -LJ https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec && \
