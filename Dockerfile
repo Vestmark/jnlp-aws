@@ -26,8 +26,8 @@ USER jenkins
 
 # Set base TF & TG Versions
 RUN mkdir /home/jenkins/bin
-RUN tfswitch -b /home/jenkins/bin --latest-stable 1.0
-RUN tgswitch -b /home/jenkins/bin 0.31.7
+RUN tfswitch -b /home/jenkins/bin/terraform --latest-stable 1.0
+RUN tgswitch -b /home/jenkins/bin/terragrunt 0.31.7
 
 RUN cd /home/jenkins/bin && \
   curl -LJ https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec && \
