@@ -18,16 +18,17 @@ RUN pip3 install checkov
 
 USER jenkins
 
+RUN mkdir /home/jenkins/bin
+
 # Install TF Switch 
 RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
-RUN tfswitch 0.13.7
+RUN tfswitch -b /home/jenkins/bin 0.13.7
 
 # Install TG Switch
 RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
-RUN tgswitch 0.25.5
+RUN tgswitch -b /home/jenkins/bin 0.25.5
 
-RUN mkdir /home/jenkins/bin && \
-  cd /home/jenkins/bin && \
+RUN cd /home/jenkins/bin && \
   curl -LJ https://github.com/aquasecurity/tfsec/releases/download/v0.56.0/tfsec-linux-amd64 -o tfsec && \
   chmod 755 tfsec
 
