@@ -2,7 +2,7 @@ FROM jenkins/inbound-agent
 
 USER root
 
-RUN apt-get update && apt-get install -y curl zip unzip less groff python3-pip build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev amazon-ecr-credential-helper
+RUN apt-get update && apt-get install -y sudo curl zip unzip less groff python3-pip build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev amazon-ecr-credential-helper
 
 # Install AWS CLI
 ENV AWSCLI_ZIP "awscliv2.zip"
