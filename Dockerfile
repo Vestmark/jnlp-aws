@@ -11,6 +11,12 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o ${AWSCLI_
   && unzip ${AWSCLI_ZIP} \
   && ./aws/install \
   && rm ${AWSCLI_ZIP}
+  
+# Terraform Quality Analysis Tools
+RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+RUN pip3 install checkov
+
+USER jenkins
 
 # Install TF Switch 
 RUN curl -L https://raw.githubusercontent.com/warrensbox/terraform-switcher/release/install.sh | bash
@@ -19,12 +25,6 @@ RUN tfswitch 0.13.7
 # Install TG Switch
 RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/install.sh | bash
 RUN tgswitch 0.25.5
-
-# Terraform Quality Analysis Tools
-RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-RUN pip3 install checkov
-
-USER jenkins
 
 RUN mkdir /home/jenkins/bin && \
   cd /home/jenkins/bin && \
