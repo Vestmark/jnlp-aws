@@ -22,6 +22,9 @@ RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/instal
 RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 RUN pip3 install checkov
 
+# Infracost
+RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
+
 USER jenkins
 
 # Set base TF & TG Versions
@@ -37,9 +40,7 @@ RUN curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/
   tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz && \
   install terrascan /home/jenkins/bin && rm terrascan && \
   chmod 755 /home/jenkins/bin/terrascan
-  
-RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
-  
+    
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
