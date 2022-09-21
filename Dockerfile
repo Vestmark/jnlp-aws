@@ -2,7 +2,7 @@ FROM jenkins/inbound-agent
 
 USER root
 
-RUN apt-get update && apt-get install -y sudo curl zip unzip less groff python3-pip build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev amazon-ecr-credential-helper
+RUN apt-get update && apt-get install -y sudo curl zip unzip less groff python3 python3-pip python-is-python3 build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev amazon-ecr-credential-helper jq
 
 # Install AWS CLI
 ENV AWSCLI_ZIP "awscliv2.zip"
@@ -20,7 +20,7 @@ RUN curl -L https://raw.githubusercontent.com/warrensbox/tgswitch/release/instal
   
 # Terraform Quality Analysis Tools
 RUN curl https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-RUN pip3 install checkov
+RUN pip install checkov
 
 # Infracost
 RUN curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh
@@ -44,8 +44,9 @@ RUN curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/l
 ENV PATH="/home/jenkins/bin:${PATH}"
 
 # Install EB CLI
+RUN pip install --user virtualenv
+ENV PATH="/home/jenkins/.local/bin:${PATH}"
 RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git \
-  && ./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer \
+  && python ./aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py \
   && rm -r aws-elastic-beanstalk-cli-setup
-
 ENV PATH="/home/jenkins/.ebcli-virtual-env/executables:${PATH}"
