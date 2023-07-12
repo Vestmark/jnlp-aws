@@ -1,5 +1,7 @@
 FROM jenkins/inbound-agent
 
+FROM vestmarkorg/jnlp-aws:6af88634438c82339b4eb55b13b5e141eabedc8c
+
 USER root
 
 RUN apt-get update && apt-get install -y sudo curl zip unzip less groff python3 python3-pip python-is-python3 build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev amazon-ecr-credential-helper jq
