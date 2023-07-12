@@ -1,6 +1,4 @@
-FROM jenkins/inbound-agent
-
-FROM vestmarkorg/jnlp-aws:6af88634438c82339b4eb55b13b5e141eabedc8c
+FROM jenkins/inbound-agent:6af88634438c82339b4eb55b13b5e141eabedc8c
 
 USER root
 
