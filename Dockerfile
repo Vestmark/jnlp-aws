@@ -50,3 +50,8 @@ RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git \
   && python ./aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py \
   && rm -r aws-elastic-beanstalk-cli-setup
 ENV PATH="/home/jenkins/.ebcli-virtual-env/executables:${PATH}"
+
+RUN wget https://download.oracle.com/java/17/archive/jdk-17.0.9_linux-x64_bin.tar.gz
+RUN tar -xzf jdk-17.0.9_linux-x64_bin.tar.gz
+RUN ln -s /opt/java/jdk-17.0.9 /usr/lib/jvm/openjdk-17
+RUN rm -f jdk-17.0.9_linux-x64_bin.tar.gz
